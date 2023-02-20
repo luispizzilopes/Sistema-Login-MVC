@@ -30,5 +30,11 @@ namespace SistemaLoginMVC.Views
                 MessageBox.Show("Não foi possível localizar essas informações na base de dados!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
             }
         }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            TelaCadastro cadastro = new TelaCadastro();
+            cadastro.ShowDialog();
+        }
     }
 }

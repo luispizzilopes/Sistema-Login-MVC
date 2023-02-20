@@ -13,7 +13,7 @@ namespace SistemaLoginMVC.Controller
 
         public bool Acessar(string usuario, string senha)
         {
-            if(login.Acessar(usuario, senha))
+            if(login.Acessar(usuario, senha) == true)
             {
                 return true;
             }
@@ -25,7 +25,7 @@ namespace SistemaLoginMVC.Controller
 
         public bool Cadastrar(string usuario, string senha)
         {
-            if(login.Cadastrar(usuario, senha))
+            if(login.Cadastrar(usuario, senha) == true)
             {
                 return true;
             }

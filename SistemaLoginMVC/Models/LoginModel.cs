@@ -15,14 +15,14 @@ namespace SistemaLoginMVC.Models
 
         public bool Acessar(string usuario, string senha)
         {
-            conexao.StrSql = "select * from TabelaLogin where usuario = @usuario and senha = @senha"; 
+            conexao.StrSql = "select * from TabelaLogin where usuario = @usuario and senha = @senha";
             comandos.CommandText = conexao.StrSql;
             comandos.Connection = conexao.Conectar();
             comandos.Parameters.AddWithValue("@usuario", usuario);
-            comandos.Parameters.AddWithValue("@senha", senha); 
+            comandos.Parameters.AddWithValue("@senha", senha);
             try
             {
-                using(SqlDataReader reader = comandos.ExecuteReader())
+                using (SqlDataReader reader = comandos.ExecuteReader())
                 {
                     if (reader.HasRows)
                     {
@@ -42,32 +42,18 @@ namespace SistemaLoginMVC.Models
             finally { conexao.Desconectar(); }
         }
 
-        public bool Cadastrar(string usuario, string senha)
+        public bool VerificarUsuario(string usuario)
         {
             conexao.StrSql = "select * from TabelaLogin where usuario = @usuario";
-            comandos.CommandText = conexao.StrSql;
-            comandos.Connection = conexao.Conectar();
-            comandos.Parameters.AddWithValue("@usuario", usuario);
+            SqlCommand comandos = new SqlCommand(conexao.StrSql, conexao.Conectar());
+            comandos.Parameters.Add("usuario", System.Data.SqlDbType.VarChar).Value = usuario;
             try
             {
-                using(SqlDataReader data = comandos.ExecuteReader())
+                using (SqlDataReader dataReader = comandos.ExecuteReader())
                 {
-                    if(data.HasRows != true)
+                    if (dataReader.HasRows != true)
                     {
-                        conexao.StrSql = "insert into TabelaLogin values (@usuario, @senha)"; 
-                        comandos.CommandText = conexao.StrSql;
-                        comandos.Parameters.AddWithValue("@usuario", usuario);
-                        comandos.Parameters.AddWithValue("@senha", senha);
-                        try
-                        {
-                            comandos.ExecuteNonQuery(); 
-                            return true; 
-                        }
-                        catch (SqlException e)
-                        {
-                            MessageBox.Show(e.ToString(), "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false; 
-                        }
+                        return true;
                     }
                     else
                     {
@@ -75,12 +61,36 @@ namespace SistemaLoginMVC.Models
                     }
                 }
             }
-            catch (SqlException e)
+            catch (SqlException)
             {
-                MessageBox.Show(e.ToString(), "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally { conexao.Desconectar(); }
+        }
+
+        public bool Cadastrar(string usuario, string senha)
+        {
+            if (VerificarUsuario(usuario) == true)
+            {
+                conexao.StrSql = "insert into TabelaLogin values (@usuario, @senha)";
+                SqlCommand comandos = new SqlCommand(conexao.StrSql, conexao.Conectar());
+                comandos.Parameters.Add("usuario", System.Data.SqlDbType.VarChar).Value = usuario;
+                comandos.Parameters.Add("senha", System.Data.SqlDbType.VarChar).Value = senha;
+                try
+                {
+                    comandos.ExecuteNonQuery();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+                finally { conexao.Desconectar(); }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

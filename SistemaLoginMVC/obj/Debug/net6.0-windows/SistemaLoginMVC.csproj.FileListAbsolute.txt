@@ -22,3 +22,4 @@ C:\Users\LUIS FELIPE\source\repos\SistemaLoginMVC\SistemaLoginMVC\obj\Debug\net6
 C:\Users\LUIS FELIPE\source\repos\SistemaLoginMVC\SistemaLoginMVC\obj\Debug\net6.0-windows\SistemaLoginMVC.pdb
 C:\Users\LUIS FELIPE\source\repos\SistemaLoginMVC\SistemaLoginMVC\obj\Debug\net6.0-windows\SistemaLoginMVC.genruntimeconfig.cache
 C:\Users\LUIS FELIPE\source\repos\SistemaLoginMVC\SistemaLoginMVC\obj\Debug\net6.0-windows\ref\SistemaLoginMVC.dll
+C:\Users\LUIS FELIPE\source\repos\SistemaLoginMVC\SistemaLoginMVC\obj\Debug\net6.0-windows\SistemaLoginMVC.Views.TelaCadastro.resources
