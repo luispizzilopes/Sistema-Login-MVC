@@ -14,7 +14,15 @@ namespace SistemaLoginMVC.DAL
 
         public ConexaoBd() 
         {
-            conexao.ConnectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DbLogin;Data Source=DESKTOP-CK95DQO\SQLEXPRESS01";
+            conexao.ConnectionString = LocalConexao(); 
+        }
+
+        public string LocalConexao()
+        {
+            using(StreamReader reader = new StreamReader("LocalBd.dll"))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
         public SqlConnection Conectar()

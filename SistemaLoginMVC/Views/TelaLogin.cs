@@ -36,5 +36,14 @@ namespace SistemaLoginMVC.Views
             TelaCadastro cadastro = new TelaCadastro();
             cadastro.ShowDialog();
         }
+
+        private void TelaLogin_Shown(object sender, EventArgs e)
+        {
+            if (!File.Exists("LocalBd.dll"))
+            {
+                MessageBox.Show("Não foi possível localizar o arquivo LocalBd.dll");
+                Application.Exit();
+            }
+        }
     }
 }
