@@ -1,1 +1,1 @@
-Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DbLogin;Data Source=DESKTOP-CK95DQO\SQLEXPRESS01
+Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DbLogin;Data Source="NOME SERVIDOR LOCAL"
